@@ -1,17 +1,71 @@
+
+
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
-
 {% block body %}
-    <h1>Register</h1>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+{% block title %}Inscription{% endblock %}
+
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{{ path('app_home') }}">
+                <img src="{{ asset('Images/LeQuaiAntique.png') }}" alt="Logo Du Quai Antique">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="{{ path('app_home') }}">Accueil</a>
+                    <a class="nav-item nav-link" href="#">La carte</a>
+                    <a class="nav-item nav-link" href="{{ path('app_login') }}">Connexion</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="login-wrap p-0">
+                    <h1>S'inscrire</h1>
+
+                    {{ form_start(registrationForm) }}
+
+                    {{ form_label(registrationForm.email, 'Adresse Email') }}
+                    {{ form_errors(registrationForm.email) }}
+                    {{ form_widget(registrationForm.email, {'attr':{'placeholder' : 'Adresse Email'}} ) }}
+
+                    <div class="form-group">
+                        {{ form_label(registrationForm.plainPassword.first,'Mot de Passe') }}
+                        {{ form_errors(registrationForm.plainPassword) }}
+                        <div class="input-group">
+                            {{ form_widget(registrationForm.plainPassword.first,{'attr':{'placeholder' : 'Mot de passe'}}  ) }}
+                            <button id="toggle-password" type="button" class="d-none"
+                                    aria-label="Afficher le mot de passe">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(registrationForm.plainPassword.second,'Mot de Passe') }}
+                        {{ form_errors(registrationForm.plainPassword) }}
+                        <div class="input-group">
+                            {{ form_widget(registrationForm.plainPassword.second,{'attr':{'placeholder' : 'Confirmez le mot de passe'}}  ) }}
+                            <button id="toggle-password" type="button" class="d-none"
+                                    aria-label="Afficher le mot de passe">
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="form-control btn btn-primary mt-2 px-3">Valider</button>
+                    {{ form_end(registrationForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block javascripts%}
+        <script src="{{ asset('js/show-password-toggle.min.js') }}"></script>
+    {% endblock %}
 {% endblock %}
