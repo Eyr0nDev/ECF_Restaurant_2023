@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="ae16761f-2b86-4735-88c2-82638579c942" name="@localhost Mapping">
+      <data-sources db="e77c69f4-b582-4d30-8263-dd551e437495" />
+      <scope>
+        <node kind="schema" qname="lequaiantique_database" />
+      </scope>
+    </mapping>
+  </component>
+</project>
