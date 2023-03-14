@@ -15,7 +15,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" href="{{ path('app_home') }}">Accueil</a>
-                    <a class="nav-item nav-link" href="{{path('app_singleMeals')}}">La carte</a>
+                    <a class="nav-item nav-link" href="#">La carte</a>
                     <a class="nav-item nav-link" href="{{ path('app_login') }}">Connexion</a>
                 </div>
             </div>
@@ -25,11 +25,12 @@
         {% for plat in plats %}
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
+                    {# <img class="card-img-top" src="{{ plat.image }}" alt="{{ plat.name }}"> #}
                     <div class="card-body">
                         <h5 class="card-title">{{ plat.name }}</h5>
-                        <p class="card-text">{{ plat.Category}}</p>
+                        <p class="card-subtitle">{{ plat.Category}} </p>
                         <div class="d-flex justify-content-between align-items-center">
-                            <p class="card-text">{{ plat.price }}</p>
+                            <p class="card-footer">{{ plat.price }} €</p>
                         </div>
                     </div>
                 </div>
