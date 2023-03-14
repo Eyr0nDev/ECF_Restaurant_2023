@@ -18,20 +18,12 @@ class SingleMealsController extends AbstractController
     #[Route('/carte', name: 'app_singleMeals')]
     public function index( PlatsRepository $platsRepository): Response
     {
-        /*$plats = $this->entityManager->getRepository(Plats::class)->findAll();
-        $cards = [];
-        foreach ($plats as $plat) {
-            $cards[] = $this->renderView('single_meals/SingleMeal.html.twig', [
-                'name' => $plat->getName(),
-                'Category' => $plat->getCategory(),
-                'price' => $plat->getPrice()
 
-            ]);
-        }*/
+         $plats = $this->entityManager->getRepository(Plats::class)->findAll();
 
-        return $this->render('single_meals/SingleMeal.html.twig', [
-            'plats' => $platsRepository->findAll(),
-        ]);
+        return $this->render('single_meals/SingleMeal.html.twig',array(
+            'plats'=>$plats
+        ));
     }
 }
 
