@@ -27,6 +27,13 @@ class CategoryCrudController extends AbstractCrudController
             DateTimeField::new('createdAt')->hideOnForm()
         ];
     }
+    public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    {
+        if (!$entityInstance instanceof Category) return;
+
+        $entityInstance->setUpdatedAt(new \DateTimeImmutable);
+        parent::updateEntity($entityManager, $entityInstance);
+    }
 
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
