@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Category;
 use App\Entity\Plats;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -29,16 +30,16 @@ class DashboardController extends AbstractDashboardController
             ->generateUrl();
         return $this->redirect($url);
 
-        // Option 2. You can make your dashboard redirect to different pages depending on the user
-        //
-        // if ('jane' === $this->getUser()->getUsername()) {
-        //     return $this->redirect('...');
-        // }
+        /* Option 2. You can make your dashboard redirect to different pages depending on the user
 
-        // Option 3. You can render some custom template to display a proper dashboard with widgets, etc.
-        // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
-        //
-        // return $this->render('some/path/my-dashboard.html.twig');
+         if ('jane' === $this->getUser()->getUsername()) {
+             return $this->redirect('...');
+         }
+
+         Option 3. You can render some custom template to display a proper dashboard with widgets, etc.
+         (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
+
+        return $this->render('some/path/my-dashboard.html.twig'); */
     }
 
     public function configureDashboard(): Dashboard
@@ -50,13 +51,22 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        // section Menu / carte
         yield MenuItem::section('Menus');
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
             MenuItem::linkToCrud('Ajouter un plat', 'fas fa-plus',Plats::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Voir les plats', 'fas fa-eye',Plats::class)
         ]);
-        yield MenuItem::section('Reservations');
+        //section Categories
+        yield MenuItem::section('Réservations');
         yield MenuItem::subMenu('Actions', 'fas fa-bars');
+        // Section Reservations
+        yield MenuItem::section('Catégories');
+        yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
+            MenuItem::linkToCrud('Ajouter une catégorie', 'fas fa-plus',Category::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Voir les utilisateurs', 'fas fa-eye',Category::class)
+        ]);
+        // section Utilisateurs
         yield MenuItem::section('Utilisateurs');
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
             MenuItem::linkToCrud('Ajouter un utilisateur', 'fas fa-plus',User::class)->setAction(Crud::PAGE_NEW),
