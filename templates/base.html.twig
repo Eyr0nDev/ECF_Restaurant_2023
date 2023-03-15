@@ -2,6 +2,12 @@
 <html lang="FR">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Site officiel du restaurant le Quai Antique, pour voir nos horaires d'ouverture, découvrir notre carte ou réserver c'est ici !">
+        <meta name="author" content="Eyr0n.Dev">
+        <meta name="keywords" content="Restaurant, Cuisine savoyarde, Nourriture, Chambery">
+        <meta name="robots" content="index, follow">
+        <meta name="theme-color" content="#121212">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22>
         <text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
@@ -12,8 +18,8 @@
                       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
                       crossorigin="anonymous"
                 >
+            <link rel="stylesheet" href="{{ asset('css/index.css') }}">
                 <link rel="stylesheet" href="{{ asset('css/show-password-toggle.css') }}" />
-                <link rel="stylesheet" href="{{ asset('css/show-password-toggle.min.css') }}"/>
         {% endblock %}
 
         {% block javascripts %}
@@ -23,7 +29,6 @@
         {% endblock %}
     </head>
     <body>
-
         {% block body %}{% endblock %}
     </body>
 </html>

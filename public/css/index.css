@@ -1,0 +1,24 @@
+.navbar-brand img {
+    max-height: 80px;
+    width: auto;
+}
+
+.card {
+    overflow: hidden;
+}
+
+.card-img-top {
+    width: 100%;
+    object-fit: cover;
+    height: 200px;
+}
+
+@media (max-width: 575.98px) {
+    .card-img-top {
+        height: 150px;
+    }
+    .navbar-brand img {
+        max-height: 40px;
+        width: auto;
+    }
+}
