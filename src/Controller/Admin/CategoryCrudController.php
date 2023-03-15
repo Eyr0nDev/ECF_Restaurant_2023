@@ -22,9 +22,9 @@ class CategoryCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            TextField::new('name'),
-            DateTimeField::new('updatedAt')->hideOnForm(),
-            DateTimeField::new('createdAt')->hideOnForm()
+            TextField::new('name', 'Nom'),
+            DateTimeField::new('updatedAt', 'Mis à jour le')->hideOnForm(),
+            DateTimeField::new('createdAt', 'Créé le ')->hideOnForm()
         ];
     }
     public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void

@@ -64,7 +64,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Catégories');
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
             MenuItem::linkToCrud('Ajouter une catégorie', 'fas fa-plus',Category::class)->setAction(Crud::PAGE_NEW),
-            MenuItem::linkToCrud('Voir les utilisateurs', 'fas fa-eye',Category::class)
+            MenuItem::linkToCrud('Voir les catégories', 'fas fa-eye',Category::class)
         ]);
         // section Utilisateurs
         yield MenuItem::section('Utilisateurs');
