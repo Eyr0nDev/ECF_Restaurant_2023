@@ -15,17 +15,6 @@ class SingleMealsController extends AbstractController
     public function __construct( private EntityManagerInterface $entityManager)
     {
     }
-    /*
-        #[Route('/carte', name: 'app_singleMeals')]
-        public function index( PlatsRepository $platsRepository): Response
-        {
-
-             $plats = $this->entityManager->getRepository(Plats::class)->findAll();
-
-            return $this->render('single_meals/SingleMeal.html.twig',array(
-                'plats'=>$plats
-            ));
-        }*/
 
     #[Route('/carte', name: 'app_singleMeals')]
     public function index( PlatsRepository $platsRepository): Response

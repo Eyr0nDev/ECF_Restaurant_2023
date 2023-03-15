@@ -5,71 +5,77 @@
 
 {% block body %}
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="{{ path('app_home') }}">
-                    <img src="{{ asset('Images/LeQuaiAntique.png') }}" alt="Logo Du Quai Antique" class="img-fluid">
+                <img src="{{ asset('Images/LeQuaiAntique.png') }}" alt="Logo Du Quai Antique" class="img-fluid">
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_home') }}">Accueil</a>
+                            <a class="nav-link "  href="{{ path('app_home') }}">Accueil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ path('app_singleMeals') }}">La carte</a>
+                            <a class="nav-link"  href="{{ path('app_singleMeals') }}">La carte</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled">Disabled</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="login-wrap p-0">
-                    <h1>S'inscrire</h1>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="login-wrap p-0">
+                <h1>S'inscrire</h1>
 
-                    {{ form_start(registrationForm) }}
+                {{ form_start(registrationForm) }}
 
-                    {{ form_label(registrationForm.email, 'Adresse Email') }}
-                    {{ form_errors(registrationForm.email) }}
-                    {{ form_widget(registrationForm.email, {'attr':{'placeholder' : 'Adresse Email'}} ) }}
+                {{ form_label(registrationForm.email, 'Adresse Email') }}
+                {{ form_errors(registrationForm.email) }}
+                {{ form_widget(registrationForm.email, {'attr':{'placeholder' : 'Adresse Email'}} ) }}
 
-                    <div class="form-group">
-                        {{ form_label(registrationForm.plainPassword.first,'Mot de Passe') }}
-                        {{ form_errors(registrationForm.plainPassword) }}
-                        <div class="input-group">
-                            {{ form_widget(registrationForm.plainPassword.first,{'attr':{'placeholder' : 'Mot de passe'}}  ) }}
-                            <button id="toggle-password" type="button" class="d-none"
-                                    aria-label="Afficher le mot de passe">
-                            </button>
+                <div class="form-group">
+                    {{ form_label(registrationForm.plainPassword.first,'Mot de Passe') }}
+                    {{ form_errors(registrationForm.plainPassword) }}
+                    <div class="input-group">
+                        {{ form_widget(registrationForm.plainPassword.first,{'id': 'password1', 'attr':{'placeholder' : 'Mot de passe', 'class' : 'input-password form-control'}}  ) }}
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary password-toggle" data-target-input="password1" type="button"><i class="fa fa-eye-slash" aria-hidden="true"></i></button>
                         </div>
                     </div>
-                    <div class="form-group">
-                        {{ form_label(registrationForm.plainPassword.second,'Mot de Passe') }}
-                        {{ form_errors(registrationForm.plainPassword) }}
-                        <div class="input-group">
-                            {{ form_widget(registrationForm.plainPassword.second,{'attr':{'placeholder' : 'Confirmez le mot de passe'}}  ) }}
-                            <button id="toggle-password" type="button" class="d-none"
-                                    aria-label="Afficher le mot de passe">
-                            </button>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="form-control btn btn-primary mt-2 px-3">Valider</button>
-                    {{ form_end(registrationForm) }}
                 </div>
+                <div class="form-group">
+                    {{ form_label(registrationForm.plainPassword.second,'Confirmez le mot de passe') }}
+                    <div class="input-group">
+                        {{ form_widget(registrationForm.plainPassword.second,{'id': 'password2', 'attr':{'placeholder' : 'Confirmez le mot de passe', 'class': 'form-control'}}  ) }}
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary password-toggle" data-target-input="password2" type="button"><i class="fa fa-eye-slash" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="form-control btn btn-primary mt-2 px-3">Valider</button>
+                {{ form_end(registrationForm) }}
             </div>
         </div>
     </div>
+</div>
     {% block javascripts%}
-        <script src="{{ asset('js/show-password-toggle.min.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+        </script>
+        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+        <script src="{{ asset('js/PasswordToggle.js') }}">
+        </script>
     {% endblock %}
 {% endblock %}

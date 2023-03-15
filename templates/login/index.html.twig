@@ -4,25 +4,27 @@
 
 {% block body %}
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="{{ path('app_home') }}">
                     <img src="{{ asset('Images/LeQuaiAntique.png') }}" alt="Logo Du Quai Antique" class="img-fluid">
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_home') }}">Accueil</a>
+                            <a class="nav-link "  href="{{ path('app_home') }}">Accueil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ path('app_singleMeals') }}">La carte</a>
+                            <a class="nav-link"  href="{{ path('app_singleMeals') }}">La carte</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                            <a class="nav-link active" aria-current="page" href="{{ path('app_login') }}">Connexion</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled">Disabled</a>
                         </li>
                     </ul>
                 </div>
@@ -51,16 +53,15 @@
                                    autocomplete="email" placeholder="Adresse Email" required autofocus>
                         </div>
                             {# Champs mot de passe #}
-                        <div class="form-group ">
+                        <div class="form-group">
                             <label for="password">Mot de passe</label>
                             <div class="input-group">
                                 <input type="password" name="_password" id="password" class="form-control"
                                        autocomplete="current-password" spellcheck="false"  autocorrect="off"
                                        autocapitalize="off" placeholder="Mot de passe" required>
-                                {# Oeuil pour afficher mdp en clair #}
-                                <button id="toggle-password" type="button" class="d-none"
-                                        aria-label="Show password as plain text. Warning: this will display your password on the screen.">
-                                </button>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary password-toggle" data-target-input="password" type="button"><i class="fa fa-eye-slash" aria-hidden="true"></i></button>
+                                </div>
                             </div>
                         </div>
 
@@ -71,23 +72,30 @@
                         >
 
                         {# bouton de connexion #}
-                        <button class=" form-control btn btn-primary mt-2 px-3" type="submit">
-                            Se Connecter
-                        </button>
-                        {# Bouton de redirection vers la page d'inscription #}
-                        <div>
-                            <button class="form-control btn btn-primary mt-2 px-3">
-                                <a class="link-light text-decoration-none" href="{{ path('app_register') }}"> S'inscrire</a>
+                        <div class="form-group">
+                            <button class="form-control btn btn-primary mt-2" type="submit">
+                                Se Connecter
                             </button>
                         </div>
-
                     </form>
+                        {# Bouton de redirection vers la page d'inscription #}
+                    <div class="mt-2">
 
+                        <div class="form-group">
+                            <a class="btn btn-outline-primary form-control" href="{{ path('app_register') }}">S'inscrire</a>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     {% block javascripts%}
-        <script src="{{ asset('js/show-password-toggle.min.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+
+        </script>
+        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+        <script src="{{ asset('js/PasswordToggle.js') }}"></script>
     {% endblock %}
 {% endblock %}
