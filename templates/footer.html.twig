@@ -1,0 +1,26 @@
+<footer class="bg-body-tertiary py-3 mt-5">
+    <div class="container">
+        <h2 class="mb-4 text-center">Heures d'ouverture</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+            {% for openingHour in get_opening_hours() %}
+                <div class="col">
+                    <div class="card h-100 bg-transparent border-0">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>{{ openingHour.getDayOfWeek }}:</strong></h5>
+                            {% if openingHour.isIsClosed() %}
+                                <p class="card-text text-danger">Fermé</p>
+                            {% else %}
+                                <p class="card-text">
+                                    Déjeuner: {{ openingHour.getLunchOpenTime ? openingHour.getLunchOpenTime|date('H:i') : 'Fermé' }} - {{ openingHour.getLunchCloseTime ? openingHour.getLunchCloseTime|date('H:i') : '' }}
+                                </p>
+                                <p class="card-text">
+                                    Dîner: {{ openingHour.getDinnerOpenTime ? openingHour.getDinnerOpenTime|date('H:i') : 'Fermé' }} - {{ openingHour.getDinnerCloseTime ? openingHour.getDinnerCloseTime|date('H:i') : '' }}
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</footer>

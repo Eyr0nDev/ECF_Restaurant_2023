@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\OpeningHours;
+use App\Entity\Restaurant;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -37,6 +38,21 @@ class OpeningHoursRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+    public function findValidOpeningHours(Restaurant $restaurant, string $dayOfWeek, \DateTimeInterface $time): ?OpeningHours
+    {
+        $qb = $this->createQueryBuilder('oh')
+            ->innerJoin('oh.bookings', 'b')
+            ->where('b.restaurant = :restaurant')
+            ->andWhere('oh.day_of_week = :dayOfWeek')
+            ->andWhere(':time BETWEEN oh.lunch_open_time AND oh.lunch_close_time OR :time BETWEEN oh.dinner_open_time AND oh.dinner_close_time')
+            ->setParameter('restaurant', $restaurant)
+            ->setParameter('dayOfWeek', $dayOfWeek)
+            ->setParameter('time', $time)
+            ->setMaxResults(1)
+            ->getQuery();
+
+        return $qb->getOneOrNullResult();
     }
 
 //    /**

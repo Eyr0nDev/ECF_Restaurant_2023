@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Category;
 use App\Entity\OpeningHours;
 use App\Entity\Plats;
+use App\Entity\Restaurant;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -61,7 +62,8 @@ class DashboardController extends AbstractDashboardController
         //section Categories
         yield MenuItem::section('Réservations');
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
-            MenuItem::linkToCrud('Gérer les horaires d\'ouverture', 'fas fa-eye',OpeningHours::class)
+            MenuItem::linkToCrud('Gérer les horaires d\'ouverture', 'fas fa-eye',OpeningHours::class),
+            MenuItem::linkToCrud('Gérer les restaurants', 'fas fa-eye',Restaurant::class)
             ]);
 
         // Section Reservations
