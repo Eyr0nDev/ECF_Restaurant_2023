@@ -24,7 +24,7 @@ class Restaurant
     #[ORM\OneToMany(mappedBy: 'restaurant', targetEntity: Booking::class, orphanRemoval: true)]
     private Collection $bookings;
 
-    #[ORM\OneToMany(mappedBy: 'Restaurant', targetEntity: OpeningHours::class)]
+    #[ORM\OneToMany(mappedBy: 'restaurant', targetEntity: OpeningHours::class)]
     private Collection $openingHours;
 
 

@@ -94,7 +94,7 @@ class BookingType extends AbstractType
                 if ($start && $end) {
                     $time = clone $start;
                     while ($time <= $end) {
-                        $timeChoices[$time->format('H:i')] = $time;
+                        $timeChoices[$time->format('H:i')] = $time->format('H:i');
                         $time->add($interval);
                     }
                 }
