@@ -166,6 +166,11 @@ class OpeningHours
 
         return $this;
     }
+    public function setTime(\DateTimeInterface $time): self
+    {
+        $this->time = $time;
 
+        return $this;
+    }
 
 }

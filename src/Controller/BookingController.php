@@ -55,11 +55,15 @@ class BookingController extends AbstractController
 
     private function createBookingForm(Booking $booking, RestaurantRepository $restaurantRepository, OpeningHoursRepository $openingHoursRepository): FormInterface
     {
+        $restaurant = $booking->getRestaurant();
+        $date = $booking->getDate();
+
         return $this->createForm(BookingType::class, $booking, [
             'action' => $this->generateUrl('booking'),
             'method' => 'POST',
+            'restaurant' => $restaurant,
             'restaurants' => $restaurantRepository->findAll(),
-            'opening_hours_repository' => $openingHoursRepository,
+            'date' => $date,
         ]);
     }
 
@@ -103,7 +107,7 @@ class BookingController extends AbstractController
                     if ($start && $end) {
                         $time = clone $start;
                         while ($time <= $end) {
-                            $availableTimes[] = $time->format('H:i');
+                            $availableTimes[$time->format('H:i')] = $time->format('H:i');
                             $time->add($interval);
                         }
                     }

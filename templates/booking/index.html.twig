@@ -53,7 +53,7 @@
             });
 
             function fetchAvailableTimes(date) {
-                console.log('fetchAvailableTimes called with date:', date); // Add this line
+                console.log('fetchAvailableTimes called with date:', date);
 
                 const restaurantId = document.querySelector("#booking_restaurant").value;
                 const url = new URL('/restaurant/' + restaurantId + '/available-times', window.location.origin);
@@ -68,18 +68,30 @@
             }
 
             function updateAvailableTimesSelect(availableTimes) {
+                console.log('updateAvailableTimesSelect called with availableTimes:', availableTimes);
                 timePicker.innerHTML = '';
 
-                availableTimes.forEach(function (time) {
-                    const option = document.createElement('option');
-                    option.value = time;
-                    option.textContent = time;
-                    timePicker.appendChild(option);
-                });
+                for (const time in availableTimes) {
+                    if (availableTimes.hasOwnProperty(time)) {
+                        const option = document.createElement('option');
+                        option.value = time;
+                        option.textContent = availableTimes[time];
+                        timePicker.appendChild(option);
+                    }
+                }
             }
-        });
 
+            const date = datePicker.value;
+            if (date) {
+                fetchAvailableTimes(date);
+            }
+
+            document.querySelector('form').addEventListener('submit', function (event) {
+                console.log('Selected time:', timePicker.value);
+            });
+        });
     </script>
+
 
 {% endblock%}
 {% endblock %}
