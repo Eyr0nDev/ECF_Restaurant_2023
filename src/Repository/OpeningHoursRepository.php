@@ -39,6 +39,14 @@ class OpeningHoursRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function findByDayOfWeek(string $dayOfWeek): array
+    {
+        return $this->createQueryBuilder('o')
+            ->andWhere('o.day_of_week = :day_of_week')
+            ->setParameter('day_of_week', $dayOfWeek)
+            ->getQuery()
+            ->getResult();
+    }
     public function getOpeningHoursChoices(): array
     {
         $openingHours = $this->findAll();
