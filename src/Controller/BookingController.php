@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 
 class BookingController extends AbstractController
@@ -40,8 +41,12 @@ class BookingController extends AbstractController
 
 
     #[Route('/booking/success', name: 'booking_success')]
-    public function success(): Response
+    public function success(AuthenticationUtils $authenticationUtils): Response
     {
-        return $this->render('booking/success.html.twig');
+        $lastUsername = $authenticationUtils->getLastUsername();
+        return $this->render('booking/success.html.twig',[
+            'last_username'=> $lastUsername,
+        ]);
     }
 }
+
