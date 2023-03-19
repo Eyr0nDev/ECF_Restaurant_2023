@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Booking;
 use App\Entity\Category;
 use App\Entity\OpeningHours;
 use App\Entity\Plats;
@@ -59,14 +60,16 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Ajouter un plat', 'fas fa-plus',Plats::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Voir les plats', 'fas fa-eye',Plats::class)
         ]);
-        //section Categories
-        yield MenuItem::section('Réservations');
+        //section Franchise
+        yield MenuItem::section('Franchise');
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
-            MenuItem::linkToCrud('Gérer les horaires d\'ouverture', 'fas fa-eye',OpeningHours::class),
-            MenuItem::linkToCrud('Gérer les restaurants', 'fas fa-eye',Restaurant::class)
+            MenuItem::linkToCrud('Gérer les horaires d\'ouverture', 'fas fa-pen',OpeningHours::class),
+            MenuItem::linkToCrud('Gérer les restaurants', 'fas fa-pen',Restaurant::class)
             ]);
+        yield MenuItem::section('Réservations');
+        yield MenuItem::linkToCrud('Voir les réservations', 'fas fa-pen',Booking::class);
 
-        // Section Reservations
+        // Section Categories
         yield MenuItem::section('Catégories');
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
             MenuItem::linkToCrud('Ajouter une catégorie', 'fas fa-plus',Category::class)->setAction(Crud::PAGE_NEW),

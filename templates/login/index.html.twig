@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Connectez vous{% endblock %}
 
 {% block body %}
     <div class="container">
@@ -13,8 +13,20 @@
                         {% endif %}
 
                         {% if app.user %}
-                            <div class="m-3 p-3">
-                                Vous êtes connecté en tant que  {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">déconnexion</a>
+
+                            <div class="row justify-content-center">
+                                    <div class="card border-success mb-3">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-check-circle text-success mb-3" style="font-size: 3rem;"></i>
+                                            <div class="card-title">
+                                                <b>Connexion Réussie</b>
+                                            </div>
+                                            <div class="card-text">
+                                                Vous êtes connecté en tant que  {{ app.user.userIdentifier }}
+                                            </div>
+                                           <a class="btn btn-danger mt-3" href="{{ path('app_logout') }}">déconnexion</a>
+                                        </div>
+                                    </div>
                             </div>
                         {% endif %}
                         {# Formulaire de login  #}

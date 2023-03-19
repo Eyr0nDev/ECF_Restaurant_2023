@@ -36,6 +36,8 @@ class BookingType extends AbstractType
                 'class' => Restaurant::class,
                 'choice_label' => 'name',
             ])
+            ->add('name', TextType::class,[
+            ])
             ->add('time', ChoiceType::class, [
                 'choices' => $options['opening_hours_choices'],
                 'choice_label' => function ($choice, $key, $value) {

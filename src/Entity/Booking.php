@@ -37,6 +37,9 @@ class Booking
     #[ORM\Column(type: "time", nullable: false)]
     private ?\DateTimeInterface $time = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
@@ -128,6 +131,18 @@ class Booking
     public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }
