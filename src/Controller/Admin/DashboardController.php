@@ -53,7 +53,7 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        yield MenuItem::linkToRoute('Retour au site', 'fas fa-home', 'app_home');
         // section Menu / carte
         yield MenuItem::section('Menus');
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
@@ -67,7 +67,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Gérer les restaurants', 'fas fa-pen',Restaurant::class)
             ]);
         yield MenuItem::section('Réservations');
-        yield MenuItem::linkToCrud('Voir les réservations', 'fas fa-pen',Booking::class);
+        yield MenuItem::linkToCrud('Voir les réservations', 'fas fa-eye',Booking::class);
 
         // Section Categories
         yield MenuItem::section('Catégories');
