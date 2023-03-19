@@ -1,97 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Book a Table{% endblock %}
+{% block title %}Réserver{% endblock %}
 
 {% block body %}
-<h1>Booking</h1>
+    <h1>Create a new booking</h1>
 
-{% for message in app.flashes('success') %}
-    <div class="alert alert-success">
-        {{ message }}
-    </div>
-{% endfor %}
-    {% for message in app.flashes('error') %}
-        <div class="alert alert-danger">
-            {{ message }}
-        </div>
-    {% endfor %}
-
-<div class="row">
-    <div class="col-md-6">
-        {{ form_start(bookingForm) }}
-
-        {{ form_row(bookingForm.restaurant) }}
-        {{ form_row(bookingForm.date) }}
-        {{ form_row(bookingForm.time) }}
-        {{ form_row(bookingForm.numGuests) }}
-        {{ form_row(bookingForm.allergies) }}
-
-        <button type="submit" class="btn btn-primary">
-            Create Booking
-        </button>
-
-        {{ form_end(bookingForm) }}
-    </div>
-</div>
-{% block javascripts %}
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const datePicker = document.querySelector("#booking_date");
-            const timePicker = document.querySelector("#booking_time");
-            const restaurantSelect = document.querySelector("#booking_restaurant");
-
-            datePicker.addEventListener('change', function (event) {
-                const date = event.target.value;
-                fetchAvailableTimes(date);
-            });
-
-            restaurantSelect.addEventListener('change', function (event) {
-                const date = datePicker.value;
-                if (date) {
-                    fetchAvailableTimes(date);
-                }
-            });
-
-            function fetchAvailableTimes(date) {
-                console.log('fetchAvailableTimes called with date:', date);
-
-                const restaurantId = document.querySelector("#booking_restaurant").value;
-                const url = new URL('/restaurant/' + restaurantId + '/available-times', window.location.origin);
-                url.searchParams.append('date', date);
-
-                fetch(url)
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log('Data received from server:', data);
-                        updateAvailableTimesSelect(data.availableTimes);
-                    });
-            }
-
-            function updateAvailableTimesSelect(availableTimes) {
-                console.log('updateAvailableTimesSelect called with availableTimes:', availableTimes);
-                timePicker.innerHTML = '';
-
-                for (const time in availableTimes) {
-                    if (availableTimes.hasOwnProperty(time)) {
-                        const option = document.createElement('option');
-                        option.value = time;
-                        option.textContent = availableTimes[time];
-                        timePicker.appendChild(option);
-                    }
-                }
-            }
-
-            const date = datePicker.value;
-            if (date) {
-                fetchAvailableTimes(date);
-            }
-
-            document.querySelector('form').addEventListener('submit', function (event) {
-                console.log('Selected time:', timePicker.value);
-            });
-        });
-    </script>
-
-
-{% endblock%}
+    {{ form_start(form) }}
+    {{ form_row(form.restaurant) }}
+    {{ form_row(form.date) }}
+    {{ form_row(form.time) }}
+    {{ form_row(form.numGuests) }}
+    {{ form_row(form.allergies) }}
+    {{ form_rest(form) }}
+    <button type="submit" class="form-control btn btn-primary mt-2 px-3">Valider</button>
+    {{ form_end(form) }}
 {% endblock %}
