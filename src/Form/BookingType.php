@@ -10,14 +10,11 @@ use DateInterval;
 use DateTime;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\ChoiceList\ArrayChoiceList;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BookingType extends AbstractType
@@ -40,7 +37,6 @@ class BookingType extends AbstractType
                 'choice_label' => 'name',
             ])
             ->add('time', ChoiceType::class, [
-                'expanded' => true,
                 'choices' => $options['opening_hours_choices'],
                 'choice_label' => function ($choice, $key, $value) {
                     return $choice;
