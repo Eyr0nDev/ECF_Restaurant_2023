@@ -34,9 +34,6 @@ class OpeningHours
     #[ORM\Column]
     private ?bool $is_closed = null;
 
-    #[ORM\OneToMany(mappedBy: 'openingHours', targetEntity: Booking::class, orphanRemoval: true)]
-    private Collection $bookings;
-
     #[ORM\ManyToOne(targetEntity: Restaurant::class, inversedBy: 'openingHours')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Restaurant $restaurant = null;
@@ -44,7 +41,6 @@ class OpeningHours
 
     public function __construct()
     {
-        $this->bookings = new ArrayCollection();
         $this->restaurant = new Restaurant();
     }
 
@@ -125,35 +121,6 @@ class OpeningHours
         return $this;
     }
 
-    /**
-     * @return Collection<int, Booking>
-     */
-    public function getBookings(): Collection
-    {
-        return $this->bookings;
-    }
-
-    public function addBooking(Booking $booking): self
-    {
-        if (!$this->bookings->contains($booking)) {
-            $this->bookings->add($booking);
-            $booking->setOpeningHours($this);
-        }
-
-        return $this;
-    }
-
-    public function removeBooking(Booking $booking): self
-    {
-        if ($this->bookings->removeElement($booking)) {
-            // set the owning side to null (unless already changed)
-            if ($booking->getOpeningHours() === $this) {
-                $booking->setOpeningHours(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function getRestaurant(): ?Restaurant
     {
@@ -166,11 +133,4 @@ class OpeningHours
 
         return $this;
     }
-    public function setTime(\DateTimeInterface $time): self
-    {
-        $this->time = $time;
-
-        return $this;
-    }
-
 }

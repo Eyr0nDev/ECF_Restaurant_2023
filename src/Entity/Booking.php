@@ -15,15 +15,12 @@ class Booking
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $user = null;
+    private User $user;
 
     #[ORM\ManyToOne(inversedBy: 'bookings')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Restaurant $restaurant = null;
 
-    #[ORM\ManyToOne(inversedBy: 'bookings')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?OpeningHours $openingHours = null;
 
     #[ORM\Column]
     private ?int $numGuests = null;
@@ -39,6 +36,11 @@ class Booking
 
     #[ORM\Column(type: "time", nullable: false)]
     private ?\DateTimeInterface $time = null;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTimeImmutable();
+    }
 
     public function getTime(): ?\DateTimeInterface
     {
@@ -93,17 +95,6 @@ class Booking
         return $this;
     }
 
-    public function getOpeningHours(): ?OpeningHours
-    {
-        return $this->openingHours;
-    }
-
-    public function setOpeningHours(?OpeningHours $openingHours): self
-    {
-        $this->openingHours = $openingHours;
-
-        return $this;
-    }
 
     public function getNumGuests(): ?int
     {

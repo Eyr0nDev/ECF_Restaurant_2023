@@ -39,22 +39,27 @@ class OpeningHoursRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-    public function findValidOpeningHours(Restaurant $restaurant, string $dayOfWeek, \DateTimeInterface $time): ?OpeningHours
+    public function getOpeningHoursChoices(): array
     {
-        $qb = $this->createQueryBuilder('oh')
-            ->innerJoin('oh.bookings', 'b')
-            ->where('b.restaurant = :restaurant')
-            ->andWhere('oh.day_of_week = :dayOfWeek')
-            ->andWhere(':time BETWEEN oh.lunch_open_time AND oh.lunch_close_time OR :time BETWEEN oh.dinner_open_time AND oh.dinner_close_time')
-            ->setParameter('restaurant', $restaurant)
-            ->setParameter('dayOfWeek', $dayOfWeek)
-            ->setParameter('time', $time)
-            ->setMaxResults(1)
-            ->getQuery();
+        $openingHours = $this->findAll();
 
-        return $qb->getOneOrNullResult();
+        $choices = [];
+
+        foreach ($openingHours as $openingHour) {
+            $choice = sprintf(
+                '%s: %s - %s, %s - %s',
+                $openingHour->getDayOfWeek(),
+                $openingHour->getLunchOpenTime() ? $openingHour->getLunchOpenTime()->format('H:i') : 'Closed',
+                $openingHour->getLunchCloseTime() ? $openingHour->getLunchCloseTime()->format('H:i') : '',
+                $openingHour->getDinnerOpenTime() ? $openingHour->getDinnerOpenTime()->format('H:i') : 'Closed',
+                $openingHour->getDinnerCloseTime() ? $openingHour->getDinnerCloseTime()->format('H:i') : '',
+            );
+
+            $choices[$choice] = $openingHour->getId();
+        }
+
+        return $choices;
     }
-
 //    /**
 //     * @return OpeningHours[] Returns an array of OpeningHours objects
 //     */
