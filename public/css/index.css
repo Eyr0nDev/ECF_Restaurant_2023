@@ -18,6 +18,18 @@
 .body-bg{
     background-color: #D5DFE5;
 }
+.btn-custom-primary {
+    background-color: #464E47;
+    border-color: #464E47;
+}
+
+.btn-custom-primary:hover,
+.btn-custom-primary:focus,
+.btn-custom-primary:active {
+    background-color: #3a4139;
+    border-color: #3a4139;
+}
+
 @media (max-width: 575.98px) {
     .card-img-top {
         height: 150px;
