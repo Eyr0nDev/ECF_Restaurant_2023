@@ -12,6 +12,9 @@
     object-fit: cover;
     height: 200px;
 }
+.custom-navbar-footer {
+    background-color: rgb(166, 150, 88);
+}
 
 @media (max-width: 575.98px) {
     .card-img-top {
