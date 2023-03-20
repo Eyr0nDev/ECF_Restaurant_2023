@@ -31,17 +31,35 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link "  href="{{ path('app_home') }}">Accueil</a>
+                            <a class="nav-link {% if app.request.attributes.get('_route') == 'app_home' %} active{% endif %}"  href="{{ path('app_home') }}"
+                               {% if app.request.attributes.get('_route') == 'app_home' %}aria-current="page"{% endif %}>Accueil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link "   href="{{ path('app_singleMeals') }}">La carte</a>
+                            <a class="nav-link {% if app.request.attributes.get('_route') == 'app_singleMeals' %} active{% endif %}"   href="{{ path('app_singleMeals') }}"
+                               {% if app.request.attributes.get('_route') == 'app_singleMeals' %}aria-current="page"{% endif %}>La carte</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('booking') }}">Réserver</a>
+                            <a class="nav-link {% if app.request.attributes.get('_route') == 'booking' %} active{% endif %}" href="{{ path('booking') }}"
+                            {% if app.request.attributes.get('_route') == 'booking' %}aria-current="page"{% endif %}>Réserver</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
-                        </li>
+                        {% if not app.user %}
+                            <li class="nav-item">
+                                <a class="nav-link {% if app.request.attributes.get('_route') == 'app_login' %} active{% endif %}" href="{{ path('app_login') }}"
+                                   {% if app.request.attributes.get('_route') == 'app_login' %}aria-current="page"{% endif %}>Connexion</a>
+                            </li>
+                        {% endif %}
+                        {% if app.user and is_granted('ROLE_ADMIN') %}
+                            <li class="nav-item">
+                                <a class="nav-link {% if app.request.attributes.get('_route') == 'admin' %} active{% endif %}" href="{{ path('admin') }}"
+                                   {% if app.request.attributes.get('_route') == 'admin' %}aria-current="page"{% endif %}>Panneau d'administration</a>
+                            </li>
+                        {% endif %}
+                        {% if app.user %}
+                            <li class="nav-item">
+                                <a class="nav-link {% if app.request.attributes.get('_route') == 'app_logout' %} active{% endif %}"  href="{{ path('app_logout') }}"
+                                   {% if app.request.attributes.get('_route') == 'app_logout' %}aria-current="page"{% endif %}>Déconnexion</a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
