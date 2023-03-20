@@ -30,7 +30,7 @@ class BookingController extends AbstractController
             $entityManager->flush();
 
 
-            return $this->redirectToRoute('booking_success');
+            return $this->redirectToRoute('booking_success', ['booking_name' => $booking->getName()]);
         }
 
 
@@ -40,12 +40,11 @@ class BookingController extends AbstractController
     }
 
 
-    #[Route('/booking/success', name: 'booking_success')]
-    public function success(AuthenticationUtils $authenticationUtils): Response
+    #[Route('/booking/success/{booking_name}', name: 'booking_success')]
+    public function success(string $booking_name): Response
     {
-        $lastUsername = $authenticationUtils->getLastUsername();
-        return $this->render('booking/success.html.twig',[
-            'last_username'=> $lastUsername,
+        return $this->render('booking/success.html.twig', [
+            'booking_name' => $booking_name,
         ]);
     }
 }

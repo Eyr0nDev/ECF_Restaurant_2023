@@ -3,7 +3,9 @@
 namespace App\Controller\Admin;
 
 use App\Entity\OpeningHours;
+use App\Entity\Restaurant;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -26,7 +28,8 @@ class OpeningHoursCrudController extends AbstractCrudController
             TimeField::new('lunch_close_time', 'Heure de fermeture du midi'),
             TimeField::new('dinner_open_time','Heure d\'ouverture du soir'),
             TimeField::new('dinner_close_time', 'Heure de fermeture du soir'),
-            BooleanField::new('is_closed')
+            BooleanField::new('is_closed'),
+            AssociationField::new('restaurant', 'restaurant')
         ];
     }
 }
