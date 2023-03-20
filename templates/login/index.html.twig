@@ -12,23 +12,6 @@
                             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                         {% endif %}
 
-                        {% if app.user %}
-
-                            <div class="row justify-content-center">
-                                    <div class="card border-success mb-3">
-                                        <div class="card-body text-center">
-                                            <i class="fas fa-check-circle text-success mb-3" style="font-size: 3rem;"></i>
-                                            <div class="card-title">
-                                                <b>Connexion Réussie</b>
-                                            </div>
-                                            <div class="card-text">
-                                                Vous êtes connecté en tant que  {{ app.user.userIdentifier }}
-                                            </div>
-                                           <a class="btn btn-danger mt-3" href="{{ path('app_logout') }}">déconnexion</a>
-                                        </div>
-                                    </div>
-                            </div>
-                        {% endif %}
                         {# Formulaire de login  #}
                             {# Champs email #}
                         <div class="form-group">

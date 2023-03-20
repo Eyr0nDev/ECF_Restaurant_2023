@@ -1,4 +1,4 @@
-<footer class="bg-body-tertiary py-3 mt-5">
+<footer class="custom-navbar-footer py-3 mt-5">
     <div class="container">
         <h2 class="mb-4 text-center">Heures d'ouverture</h2>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
@@ -8,7 +8,7 @@
                         <div class="card-body">
                             <h5 class="card-title"><strong>{{ openingHour.getDayOfWeek }}:</strong></h5>
                             {% if openingHour.isIsClosed() %}
-                                <p class="card-text text-danger">Fermé</p>
+                                <p class="card-text ">Fermé</p>
                             {% else %}
                                 <p class="card-text">
                                     Déjeuner: {{ openingHour.getLunchOpenTime ? openingHour.getLunchOpenTime|date('H:i') : 'Fermé' }} - {{ openingHour.getLunchCloseTime ? openingHour.getLunchCloseTime|date('H:i') : '' }}
