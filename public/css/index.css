@@ -16,6 +16,7 @@
     background-color: rgb(166, 150, 88);
 }
 
+
 @media (max-width: 575.98px) {
     .card-img-top {
         height: 150px;
