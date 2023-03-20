@@ -15,19 +15,34 @@
 .custom-navbar-footer {
     background-color: #A69658;
 }
-.body-bg{
+.basic-bg{
     background-color: #D5DFE5;
 }
-.btn-custom-primary {
+.card.basic-bg{
+    background-color: #D5DFE5;
+}
+.btn.btn-custom-outline{
+    border-color: #464E47;
+    background-color: #D5DFE5;
+}
+.btn.btn-custom-outline:hover,
+.btn.btn-custom-outline:focus,
+.btn.btn-custom-outline:active{
+    border-color: #3a4139;
+    background-color: #C1CFD7;
+}
+.btn.btn-custom-primary {
     background-color: #464E47;
     border-color: #464E47;
+    color: #ffffff;
 }
 
-.btn-custom-primary:hover,
-.btn-custom-primary:focus,
-.btn-custom-primary:active {
+.btn.btn-custom-primary:hover,
+.btn.btn-custom-primary:focus,
+.btn.btn-custom-primary:active {
     background-color: #3a4139;
     border-color: #3a4139;
+    color: #ffffff;
 }
 
 @media (max-width: 575.98px) {

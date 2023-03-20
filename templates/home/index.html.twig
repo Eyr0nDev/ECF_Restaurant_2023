@@ -4,7 +4,7 @@
 
 {% block body %}
     <div>
-        <h1 class="align-self-lg-center">Bienvenue au Quai antique</h1>
+        <h2 class="text-center m-3">Le Quai Antique, un restaurant par Arnaud Michant</h2>
     </div>
     <div class="container">
         <div class="row justify-content-center">
@@ -13,7 +13,7 @@
                     <div class="carousel-inner">
                         {% for plat in plats %}
                             <div class="carousel-item{% if loop.first %} active{% endif %}">
-                                <img src="{{ asset('upload/images/meals/' ~ plat.image) }}" class="d-block w-100 carousel-img-lg" alt="{{ plat.name }}">
+                                <img src="{{ asset('upload/images/meals/' ~ plat.image) }}" class="d-block w-100 carousel-img-lg rounded-3" alt="{{ plat.name }}">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h5>{{ plat.name }}</h5>
                                 </div>
@@ -34,7 +34,7 @@
     </div>
 
     <div class="text-center mt-4">
-        <a href="{{ path('booking') }}" class="btn btn-primary btn-lg">Réserver une table</a>
+        <a href="{{ path('booking') }}" class=" btn btn-custom-primary btn-lg ">Réserver une table</a>
     </div>
 
 

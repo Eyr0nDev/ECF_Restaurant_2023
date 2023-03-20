@@ -7,6 +7,7 @@
         <div class="row justify-content-center">
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="login-wrap p-0">
+                    <h2 class="text-center">Connexion</h2>
                     <form action="{{ path('app_login') }}" method="post">
                         {% if error %}
                             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -40,7 +41,7 @@
 
                         {# bouton de connexion #}
                         <div class="form-group">
-                            <button class="form-control btn btn-primary mt-2" type="submit">
+                            <button class="form-control btn btn-custom-primary mt-2" type="submit">
                                 Se Connecter
                             </button>
                         </div>
@@ -49,7 +50,7 @@
                     <div class="mt-2">
 
                         <div class="form-group">
-                            <a class="btn btn-outline-primary form-control" href="{{ path('app_register') }}">S'inscrire</a>
+                            <a class="btn btn-custom-outline form-control" href="{{ path('app_register') }}">S'inscrire</a>
                         </div>
 
                     </div>

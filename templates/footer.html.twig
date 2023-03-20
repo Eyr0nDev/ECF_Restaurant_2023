@@ -4,7 +4,7 @@
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
             {% for openingHour in get_opening_hours() %}
                 <div class="col">
-                    <div class="card h-100 bg-transparent border-0">
+                    <div class="card basic-bg h-100 border-0">
                         <div class="card-body">
                             <h5 class="card-title"><strong>{{ openingHour.getDayOfWeek }}:</strong></h5>
                             {% if openingHour.isIsClosed() %}
@@ -28,6 +28,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Contactez-nous:</h5>
                         <p class="card-text">lequaiantique.contact@gmail.com</p>
+                        <p class="card-text"> Le Quai Antique Boulevard des Saveurs 73000 Chambéry France</p>
                     </div>
                 </div>
             </div>
