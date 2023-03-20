@@ -19,6 +19,9 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class UserCrudController extends AbstractCrudController
 {
@@ -50,7 +53,21 @@ class UserCrudController extends AbstractCrudController
             ->setFormType(RepeatedType::class)
             ->setFormTypeOptions([
                 'type' => PasswordType::class,
-                'first_options' => ['label' => 'Mot de Passe'],
+                'first_options' => [
+                    'label' => 'Mot de Passe',
+                    'constraints' => [
+                        new NotBlank(['message' => 'Please enter a password']),
+                        new Length([
+                            'min' => 6,
+                            'minMessage' => 'Your password should be at least {{ limit }} characters',
+                            'max' => 4096,
+                        ]),
+                        new Regex([
+                            'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-+_!@#$%^&*.,?]).+$/',
+                            'message' => 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character',
+                        ]),
+                    ],
+                    ],
                 'second_options' => ['label' => 'Confirmez le mot de passe'],
                 'mapped' => false,
             ])

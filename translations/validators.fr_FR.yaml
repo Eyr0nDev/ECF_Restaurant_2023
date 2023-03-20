@@ -1,0 +1,4 @@
+Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre et un caractère spécial : Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre et un caractère spécial
+The password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character : Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre et un caractère spécial
+Your password should be at least {{ limit }} characters : Votre mot de passe doit faire au moins {{ limit }} caractères
+Please enter a password : Veuillez saisir un mot de passe
