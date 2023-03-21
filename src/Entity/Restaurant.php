@@ -27,7 +27,10 @@ class Restaurant
     #[ORM\OneToMany(mappedBy: 'restaurant', targetEntity: OpeningHours::class)]
     private Collection $openingHours;
 
-
+    public function __toString(): string
+    {
+        return $this->name ?? '';
+    }
 
     public function __construct()
     {

@@ -4,9 +4,9 @@
 
 {% block body %}
     <div class="container mt-3">
-        <div class="row">
-            <div class="col-md-12">
-                <label for="sortCategory">Sort by Category:</label>
+        <div class="row align-items-center">
+            <div class="col-12 col-md-6 col-lg-4">
+                <label for="sortCategory" class="text-center">Trier par catégorie:</label>
                 <select id="sortCategory" class="form-control">
                     <option value="default">Tous les plats</option>
                     {% for category in categories %}
