@@ -1,0 +1,14 @@
+{% set delete_route = path('account_delete') %}
+<div class="container">
+    <div class="row justify-content-start">
+        <div class="col-12 col-md-6 col-lg-4">
+                <h3 class="m-3">Supprimer le compte</h3>
+                <form action="{{ delete_route }}" method="post">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('delete_account') }}">
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes vous sur de vouloir supprimer votre compte ? Cette action est définitive.');">
+                        Supprimer le compte
+                    </button>
+                </form>
+        </div>
+    </div>
+</div>

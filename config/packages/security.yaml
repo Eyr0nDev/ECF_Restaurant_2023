@@ -39,6 +39,9 @@ security:
     access_control:
         - { path: /admin, roles: ROLE_ADMIN }
         - { path: /booking, roles: ROLE_USER }
+        - { path: /account, roles: ROLE_USER }
+        - { path: /delete-account, roles: ROLE_USER }
+        - { path: /change-password, roles: ROLE_USER }
         #{ path: ^/profile, roles: ROLE_USER }
 
 when@test:
