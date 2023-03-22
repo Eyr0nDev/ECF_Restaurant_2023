@@ -15,8 +15,9 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
-use Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+
 
 class AccountController extends AbstractController
 {
@@ -65,7 +66,13 @@ class AccountController extends AbstractController
     }
 
     #[Route('/delete-account', name: 'account_delete', methods: ['POST'])]
-    public function deleteAccount(Request $request, EntityManagerInterface $entityManager, SessionInterface $session, CsrfTokenManagerInterface $csrfTokenManager): Response
+    public function deleteAccount(
+        Request $request,
+        EntityManagerInterface $entityManager,
+        SessionInterface $session,
+        CsrfTokenManagerInterface $csrfTokenManager,
+        TokenStorageInterface $tokenStorage
+    ): Response
     {
         /** @var User|null */
         $user = $this->getUser();
@@ -80,11 +87,14 @@ class AccountController extends AbstractController
             throw new AccessDeniedException('Invalid CSRF token.');
         }
 
+        // Log the user out
+        $tokenStorage->setToken(null);
+        $session->invalidate();
+
+        // Delete the user account
         $entityManager->remove($user);
         $entityManager->flush();
 
-        $session->invalidate();
-
-        return $this->redirectToRoute('app_logout');
+        return $this->redirectToRoute('app_home');
     }
 }
